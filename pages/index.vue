@@ -1,5 +1,5 @@
 <template>
-  <div>
-    asdasdsad
+  <div class=" max-w-screen-xl">
+    <Gallery />
   </div>
 </template>

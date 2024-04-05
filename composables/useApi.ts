@@ -1,12 +1,5 @@
-import axios from 'axios'
+export const useMyFetch: typeof useFetch = (request, opts?) => {
+  const config = useRuntimeConfig()
 
-export const useApi = () => {
-  const baseURL = 'https://BASE_URL.com'
-
-  return axios.create({
-    baseURL,
-    headers: {
-      Authorization: `Bearer`
-    }
-  })
+  return useFetch(request, { baseURL: config.public.baseURL, ...opts })
 }

@@ -1,5 +1,6 @@
 <template>
   <div class=" max-w-screen-xl">
     <Gallery />
+    <Cart />
   </div>
 </template>

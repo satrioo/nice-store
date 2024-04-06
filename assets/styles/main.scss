@@ -1,0 +1,65 @@
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.cart{
+  &-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  &-image{
+    width: 100px;
+    img{
+      object-fit: cover;
+    }
+  }
+  &-title{
+    max-width: 210px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+}
+
+.gallery{
+  &-list{
+    figure{
+      height: 450px;
+      overflow: hidden;
+      width: 100%;
+      img{
+        object-position: center;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &-title{
+      max-width: 85%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      display: inline-block;
+    }
+  } 
+}

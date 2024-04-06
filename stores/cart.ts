@@ -1,4 +1,4 @@
-import {ICart} from '@/interface/cart'
+import type { ICart } from '@/interfaces/cart'
 
 export const useCartStore = defineStore('cart', () => {
   const cart = ref<ICart[]>([]) 
@@ -21,12 +21,16 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   function removeCart(item: ICart){
-    if(isExist(item)) {
-      cart.value = cart.value.map((x)=> x.id===item.id?{...x, qty:x.qty-1}:x)
-    } else {
+    if(isExist(item)?.qty === 1) {
       cart.value = cart.value.filter((x)=>x.id!==item.id)
+    } else {
+      cart.value = cart.value.map((x)=> x.id===item.id?{...x, qty:x.qty-1}:x)
     }
   }
 
-  return { cart, addCart, showCart, toggleShowCart }
+  function removeItem(item: ICart) {
+    cart.value = cart.value.filter((x)=>x.id!==item.id)
+  }
+
+  return { cart, addCart, removeCart, showCart, toggleShowCart, removeItem }
 })

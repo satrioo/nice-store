@@ -3,8 +3,9 @@ import { useCartStore } from "@/stores/cart";
 
 const useCart = useCartStore()
 const colorMode = useColorMode()
-
+colorMode.preference.toString().includes('system') ? colorMode.preference = 'light' : ''
 const isDarkmode = ref(colorMode.preference)
+
 const toggleDarkmode = () => {
   isDarkmode.value = colorMode.preference
   isDarkmode.value === 'light' ? colorMode.preference = 'dark' : colorMode.preference = 'light'

@@ -23,12 +23,14 @@ export const useCartStore = defineStore('cart', () => {
     } else {
       cart.value.push({...item, qty: 1}) 
     }   
+    useNuxtApp().$toast.success('Added to Cart');
     updateCookie()
   }
 
   function removeCart(item: ICart){
     if(isExist(item)?.qty === 1) {
       cart.value = cart.value.filter((x)=>x.id!==item.id)
+      useNuxtApp().$toast.success('Item Removed');
     } else {
       cart.value = cart.value.map((x)=> x.id===item.id?{...x, qty:x.qty-1}:x)
     }
@@ -37,11 +39,13 @@ export const useCartStore = defineStore('cart', () => {
 
   function removeItem(item: ICart) {
     cart.value = cart.value.filter((x)=>x.id!==item.id)
+    useNuxtApp().$toast.success('Item Removed');
     updateCookie()
   }
 
   function reset() {
     cart.value = []
+    useNuxtApp().$toast.success('Cart is Empty');
     updateCookie()
   }
 

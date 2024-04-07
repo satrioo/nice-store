@@ -13,6 +13,7 @@
     "@iconify-json/mdi": "^1.1.65",
     "@mdi/font": "^7.4.47",
     "@nuxt/ui": "^2.15.1",
+    "@paypal/paypal-js": "^8.0.4",
     "@pinia/nuxt": "^0.5.1",
     "axios": "^1.6.8",
     "nuxt": "^3.11.1",

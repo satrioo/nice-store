@@ -80,7 +80,7 @@ const router = useRouter()
             <strong>Total amount</strong>
           </div>
           <span>
-            <strong>${{ Math.round(useCart.totalPrice) }}</strong>
+            <strong>${{ useCart.totalPrice }}</strong>
           </span>
         </li>
       </ul>

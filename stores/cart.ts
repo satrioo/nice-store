@@ -1,8 +1,13 @@
 import type { ICart } from '@/interfaces/cart'
 
 export const useCartStore = defineStore('cart', () => {
-  const cart = ref<ICart[]>([]) 
+  const cookie = useCookie('userCart')
+  const cart = ref<ICart[]>(cookie.value ? cookie.value : []) 
   const showCart = ref(false)
+
+  function updateCookie() {
+    cookie.value = cart.value
+  }
 
   function toggleShowCart(){
     showCart.value = !showCart.value
@@ -18,6 +23,7 @@ export const useCartStore = defineStore('cart', () => {
     } else {
       cart.value.push({...item, qty: 1}) 
     }   
+    updateCookie()
   }
 
   function removeCart(item: ICart){
@@ -26,14 +32,17 @@ export const useCartStore = defineStore('cart', () => {
     } else {
       cart.value = cart.value.map((x)=> x.id===item.id?{...x, qty:x.qty-1}:x)
     }
+    updateCookie()
   }
 
   function removeItem(item: ICart) {
     cart.value = cart.value.filter((x)=>x.id!==item.id)
+    updateCookie()
   }
 
   function reset() {
     cart.value = []
+    updateCookie()
   }
 
   const totalQty = computed(() => {

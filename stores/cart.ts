@@ -1,7 +1,7 @@
 import type { ICart } from '@/interfaces/cart'
 
 export const useCartStore = defineStore('cart', () => {
-  const cookie = useCookie('userCart')
+  const cookie = useCookie<ICart[]>('userCart')
   const cart = ref<ICart[]>(cookie.value ? cookie.value : []) 
   const showCart = ref(false)
 
@@ -22,8 +22,8 @@ export const useCartStore = defineStore('cart', () => {
       cart.value =cart.value.map((x)=>x.id === item.id?{...x, qty: x.qty+1}:x)
     } else {
       cart.value.push({...item, qty: 1}) 
+      useNuxtApp().$toast.success('Added to Cart');
     }   
-    useNuxtApp().$toast.success('Added to Cart');
     updateCookie()
   }
 

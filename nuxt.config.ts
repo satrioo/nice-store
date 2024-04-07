@@ -21,13 +21,12 @@ export default defineNuxtConfig({
   devServer: {
     port: 8000
   },
-  // app: {
-  //   head: {
-  //     script: [{ src:"https://www.paypal.com/sdk/js?client-id=BAAZz-KhcCl2As8xaPVeqCZFyya4R3pAUJj4WghFWoTocq8IRl3JqTn2MHtMy9TxrozDN6taHUaRDlUPt4&components=hosted-buttons&disable-funding=venmo&currency=USD" },
-  //       { children:` paypal.HostedButtons({
-  //         hostedButtonId: "YRZFTH4XFUS5Y",
-  //       }).render("#paypal-container-YRZFTH4XFUS5Y")` }
-  //     ],
-  //   },
-  // },
+  app: {
+    head: {
+      title: 'Nice Store',
+      meta: [
+        { name: 'Created by Satrio', content: 'for Evermos' }
+      ],
+    },
+  },
 })

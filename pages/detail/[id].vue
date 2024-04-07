@@ -38,8 +38,8 @@ getDetail()
           <img class="img-fluid mx-auto" :src="detailItem.image" :alt="detailItem.title" width="400" height="400" />
         </div>
         <div class=" w-6/12 py-5">
-          <h4 class=" text-[32px] capitalize ">{{ detailItem.category }}</h4>
-          <h1 class="display-5">{{ detailItem.title }}</h1>
+          <h4 class=" text-[32px] capitalize ">{{ detailItem.title }}</h4>
+          <h1 class="display-5">{{ detailItem.category }}</h1>
           <p class="mt-2 flex gap-2 content-center items-center">
             {{ detailItem.rating ? detailItem.rating.rate : '0' }}
             <MdiIcon icon="mdiStar" class=" !w-6 !h-6" />

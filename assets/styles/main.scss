@@ -63,3 +63,12 @@
     }
   } 
 }
+
+.summary ul li{
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  padding: 0px 0 7px;
+  border-bottom: solid 1px #eaeaea;
+  margin-bottom: 15px;
+}

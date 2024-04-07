@@ -2,18 +2,16 @@
 import { useCartStore } from "@/stores/cart";
 
 const useCart = useCartStore()
-let subtotal = 0;
-let shipping = 30.0;
-let totalItems = 0;
+const router = useRouter()
 </script>
 
 <template>
   <div :class="useCart.showCart ? '' : 'translate-x-full'"
-    class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform bg-white w-96 dark:bg-gray-800 flex flex-col"
+    class="fixed top-0 right-0 z-40 h-screen p-4 shadow-lg px-4 py-4 overflow-y-auto transition-transform bg-white w-96 dark:bg-gray-800 flex flex-col"
     tabindex="-1" aria-labelledby="drawer-right-label">
     <h5 id="drawer-right-label"
-      class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
-      Cart List
+      class="inline-flex text-[18px] items-center mb-4 font-semibold text-gray-500 dark:text-gray-400">
+      Cart List 
     </h5>
 
     <button @click="useCart.toggleShowCart" type="button" data-drawer-hide="drawer-right-example"
@@ -23,7 +21,7 @@ let totalItems = 0;
       <span class="sr-only">Close menu</span>
     </button>
 
-    <div class="flex-1">
+    <div class="flex-1 ">
       <ul class="cart">
         <li class="cart-list" v-for="item in useCart.cart" :key="item.id">
           <div class="cart-image">
@@ -31,11 +29,12 @@ let totalItems = 0;
           </div>
           <div>
             <p class="cart-title"> {{ item.title }} </p>
-            <p class="text-[18px] font-semibold"> <span> Rp{{ item.price }} </span> x {{ item.qty }} </p>
+            <p class="text-[18px] font-semibold"> <span> ${{ item.price }} </span> x {{ item.qty }} </p>
 
             <form class="mx-auto mt-2 flex gap-x-4">
               <div class="relative flex items-center max-w-[8rem]">
-                <button @click="useCart.removeCart(item)" type="button" id="decrement-button" data-input-counter-decrement="quantity-input"
+                <button @click="useCart.removeCart(item)" type="button" id="decrement-button"
+                  data-input-counter-decrement="quantity-input"
                   class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-10 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                   <svg class="w-2 h-2 text-gray-900 dark:text-white" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
@@ -58,8 +57,7 @@ let totalItems = 0;
                 </button>
 
               </div>
-              <button type="button"
-                @click="useCart.removeItem(item)"
+              <button type="button" @click="useCart.removeItem(item)"
                 class="bg-gray-100 h-10 flex items-center dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 p-3 focus:ring-gray-100 dark:focus:ring-gray-700 rounded-lg focus:ring-2 focus:outline-none">
                 <MdiIcon icon="mdiDelete" class="!h-4 !w-6" />
               </button>
@@ -71,31 +69,24 @@ let totalItems = 0;
     </div>
 
     <div class="card-body">
-      <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
-          <!-- Products {{ subtotal += item.price * item.qty }} {{ subtotal }} -->
-          <span>${Math.round(subtotal)}</span>
+      <ul class="list-group gap-y-3">
+        <li class=" flex justify-between items-center border-0 px-0">
+          <span>Total Products </span>
+          <span>{{ useCart.totalQty }}</span>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-          Shipping {{ useCart.cart.qty }}
-          <span>${shipping}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+        <li class="flex justify-between items-center border-0 px-0 mb-3">
           <div>
             <strong>Total amount</strong>
           </div>
           <span>
-            <strong>${Math.round(subtotal + shipping)}</strong>
+            <strong>${{ Math.round(useCart.totalPrice) }}</strong>
           </span>
         </li>
       </ul>
 
       <div class=" flex">
-        <button type="button"
-          class="text-white flex-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Checkout</button>
-        <button type="button"
-          class="py-2.5 px-5 flex-1 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Reset
-          Cart</button>
+        <button @click="router.push({path: 'checkout'}) " type="button" class="text-white flex-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Checkout</button>
+        <button type="button" class="py-2.5 px-5 flex-1 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">ResetCart</button>
       </div>
     </div>
   </div>

@@ -1,7 +1,9 @@
 <template>
   <Navbar />
   <Cart />
-     <slot />
+  <div class=" pt-24">
+    <slot />
+  </div>
 </template>
 
 <style lang="postcss">

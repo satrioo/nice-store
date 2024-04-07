@@ -5,6 +5,7 @@ const useCart = useCartStore()
 const totalPrice = computed(() => {
   return useCart.cart.reduce((total, item) => total + (item.price * item.qty), 0);
 });
+
 </script>
 
 <template>
@@ -20,23 +21,21 @@ const totalPrice = computed(() => {
               <span>{{ item.title }} </span>
               <span>${{ Math.round(item.price) }} x {{ item.qty }}</span>
             </div>
-            <span>${{Math.round(item.price * item.qty)}}</span>
+            <span>${{ Math.round(item.price * item.qty) }}</span>
           </li>
-    
-       
         </ul>
-
         <ul>
           <li class="list-group-item px-0 mb-3">
             <div>
               <strong>Total amount</strong>
             </div>
             <span>
-              <strong>${{Math.round(totalPrice)}}</strong>
+              <strong>${{ Math.round(totalPrice) }}</strong>
             </span>
           </li>
         </ul>
       </div>
+
     </div>
   </div>
 </template>

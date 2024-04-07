@@ -32,6 +32,10 @@ export const useCartStore = defineStore('cart', () => {
     cart.value = cart.value.filter((x)=>x.id!==item.id)
   }
 
+  function reset() {
+    cart.value = []
+  }
+
   const totalQty = computed(() => {
     return cart.value.reduce((total, item) => total + item.qty, 0);
   });
@@ -40,5 +44,5 @@ export const useCartStore = defineStore('cart', () => {
     return cart.value.reduce((total, item) => total + (item.price * item.qty), 0);
   });
 
-  return { cart, addCart, removeCart, showCart, toggleShowCart, removeItem, totalQty, totalPrice }
+  return { cart, addCart, removeCart, showCart, toggleShowCart, removeItem, totalQty, totalPrice, reset }
 })

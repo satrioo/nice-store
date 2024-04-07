@@ -25,6 +25,8 @@
     flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 15px;
+    border-bottom: solid 1px #d9d9d9;
+    padding-bottom: 15px;
   }
   &-image{
     width: 100px;
@@ -38,6 +40,10 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     display: inline-block;
+  }
+  &-amount{
+    font-size: 16px;
+    padding-top: 15px;
   }
 }
 

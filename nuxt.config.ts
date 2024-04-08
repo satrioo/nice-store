@@ -18,9 +18,6 @@ export default defineNuxtConfig({
       baseURL:'https://fakestoreapi.com/',
     },
   },
-  devServer: {
-    port: 8000
-  },
   app: {
     head: {
       title: 'Nice Store',
